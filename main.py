@@ -1,14 +1,16 @@
 #This file will need to use the DataManager,FlightSearch, FlightData, NotificationManager classes to achieve the program requirements
-import data_manager
-import flight_search
+from data_manager import DataManager
+from flight_search import FlightSearch
 
-sheet = data_manager.DataManager()
+sheet = DataManager()
+flight_search = FlightSearch()
 
 sheet_data = sheet.get_sheet()
 
-for data in sheet_data:
-    if data['iataCode'] == '':
-        new_code = flight_search.FlightSearch.search_code(city=data['city'])
-        data_manager.DataManager.set_code(city=data['city'], code=new_code)
+for city in sheet_data:
+    city['iataCode'] = flight_search.search_code(city['city'])
 
-print(sheet_data)
+    sheet.destinations = sheet_data
+    sheet.set_code()
+
+print("All updated!")

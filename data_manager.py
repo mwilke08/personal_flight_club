@@ -14,12 +14,14 @@ class DataManager:
         data = response.json()
         self.destinations = data['prices']
 
-        return data['prices']
+        return self.destinations
 
-    def set_code(self, city, code):
-        new_data = {
-            "price": {
-                "iataCode": city[code]
+    def set_code(self):
+        for city in self.destinations:
+            new_data = {
+                "price": {
+                    "iataCode": city["iataCode"]
+                }
             }
-        }
-        response = requests.put(url=f"{FLIGHT_URL}/{city['id']}", json=new_data)
+            response = requests.put(url=f"{FLIGHT_URL}/{city['id']}", json=new_data)
+            print("Success")

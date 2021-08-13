@@ -3,5 +3,5 @@ class FlightSearch:
     def __init__(self):
         self.code = "Testing"
 
-    def search_code(city):
+    def search_code(self, city):
         return "Testing"

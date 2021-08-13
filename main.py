@@ -10,7 +10,7 @@ sheet_data = sheet.get_sheet()
 for city in sheet_data:
     city['iataCode'] = flight_search.search_code(city['city'])
 
-    sheet.destinations = sheet_data
-    sheet.set_code()
+sheet.destinations = sheet_data
+sheet.set_code()
 
 print("All updated!")
